@@ -1,0 +1,55 @@
+///LEDs are connected to ports P1 and P2. Write an 8051 Cprogramthat showsthecount from 0 to FFH (0000 0000 to 1111 1111 in binary) on the LEDs.
+
+#include <reg51.h>
+#define LED P2
+
+void main(void) {
+    P1 = 0x00; //clear P1
+    LED = 0;   //clear P1
+    for (;;) { //repeat forever
+        P1++;      //increment P1
+        LED++;     //increment P2
+    }
+}
+
+
+
+
+///Write an 8051 C program to get a byte of data fromPI, wait 1/2second, andthensend it to P2.
+#include <reg51.h>
+
+void MSDelay(unsigned int);
+
+void main(void) {
+    unsigned char mybyte;
+    P1 = 0xFF;
+    while (1) {
+        mybyte = P1;
+        MSDelay(500); // Corrected function name
+        P2 = mybyte;
+    }
+}
+
+void MSDelay(unsigned int itime) {
+    unsigned int i, j; // Corrected colon to semicolon
+    for (i = 0; i < itime; i++)
+        for (j = 0; j < 1275; j++); // Corrected indentation and semicolon
+}
+
+
+
+
+
+///Write an 8051 C program to monitor bit P1.5. If it is high, send55HtoP0;otherwise, send AAH to P2.
+#include <reg51.h>
+sbit mybit = P1^5;
+void main(void) {
+  mybit=1;
+	while(1)
+	{
+		if(mybit==1)
+			P0=0x55;
+		else
+			P2=0xAA;
+	}
+}

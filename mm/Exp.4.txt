@@ -1,0 +1,25 @@
+#include <reg51.h>
+
+sbit mbit = P1^0;
+
+void main(void) {
+    unsigned int z;
+    for(z=0; z<50000; z++) { // Changed the condition in the for loop
+        mbit = 0; // Corrected the variable name
+        mbit = 1; // Corrected the variable name
+    }
+}
+
+
+////////////
+
+
+#include <reg51.h>
+
+void main(void) {
+    unsigned int z;
+    for(z = 0; z <= 255; z++) { // Changed the condition in the for loop
+        P1 = z;
+    }
+}
+
